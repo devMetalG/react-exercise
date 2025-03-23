@@ -1,8 +1,11 @@
+const getName = (): string => {
+  return 'Memo';
+}
 const FirstApp = () => {
   return (
     <>
-      <h1>First App</h1>
-      <p>subtitulo</p>
+      <h1>{getName()}</h1>
+      <p>subtitle</p>
     </>
   );
 }
