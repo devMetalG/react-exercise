@@ -1,15 +1,41 @@
-import { useState } from 'react';
+import { useState } from "react";
+import * as z from "zod";
 
-function Counter(){
-  const [count, setCount] = useState(0);
+interface FormValues {
+  name: string;
+  lastName: string;
+  email: string;
+}
+function Form(){
+ 
+  const [data, setData] = useState<FormValues>({
+    name: '',
+    lastName: '',
+    email: ''
+  });
 
-  return (
-    <div>
-      <button onClick={() => setCount((count => count + 1))}>
-        Count is: {count}
-      </button>
-    </div>
+  const [errors, setErrors] = useState<{[key:string]:string}>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    })); 
+  }
+
+  return(
+    <form>
+      <input type="text" name="name" placeholder="name" value={data.name} onChange={handleChange}/>
+      <p style={{ color: 'red' }}>{'Invalid name.'}</p>
+      <input type="text" name="lastName" placeholder="lastName" value={data.lastName}  onChange={handleChange}/>
+      <p style={{ color: 'red' }}>{'Invalid last name.'}</p>
+      <input type="text" name="email" placeholder="email" value={data.name}  onChange={handleChange}/>
+      <p style={{ color: 'red' }}>{'Invalid email.'}</p>
+
+      <button type="submit">Submit</button>
+    </form>
   )
 }
 
-export default Counter;
+export default Form;
