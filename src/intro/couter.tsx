@@ -1,18 +1,25 @@
 import { useState } from 'react';
+import '../App.css';
 
-function Counter(){
-  const [count, setCount] = useState(0);
+interface CounterProps {
+  value: number
+}
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
+const Counter:React.FC<CounterProps> = ( { value } ) => {
+  const [count, setCount] = useState( value );
+
+  const handleIncrement = () => setCount(count + 1);
+  const handleDecrement = () => setCount(count - 1);
+  const handleReset = () => setCount(value);
+  
 
   return (
-    <div>
-      <button onClick={ handleIncrement }>
-        Count is: {count}
-      </button>
-    </div>
+    <>
+      <h1> { count } </h1>
+      <button onClick={ handleIncrement }> +1 </button>
+      <button onClick={ handleDecrement }> -1 </button>
+      <button onClick={ handleReset }> reset </button>
+    </>
   );
 }
 
