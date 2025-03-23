@@ -9,7 +9,7 @@ function Counter(){
         Count is: {count}
       </button>
     </div>
-  )
+  );
 }
 
 export default Counter;
