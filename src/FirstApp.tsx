@@ -1,10 +1,14 @@
-const getName = (): string => {
-  return 'Memo';
+interface AppProps {
+  title: string;
 }
-const FirstApp = () => {
+
+// const getName = (): string => {
+//   return 'Memo';
+// }
+const FirstApp: React.FC<AppProps> = ({title}) => {
   return (
     <>
-      <h1>{getName()}</h1>
+      <h1>{title}</h1>
       <p>subtitle</p>
     </>
   );
